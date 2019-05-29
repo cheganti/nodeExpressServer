@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const logger = require('./logs/logger');
 
 const getRouter = require('./app/news/get');
 const postRouter = require('./app/news/post');
@@ -12,5 +13,7 @@ app.use('/api/news', postRouter);
 app.use('/api/news', putRouter);
 app.use('/api/news', deleteRouter);
 
-const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`we are listening on ${port}`));
+const port = process.env.PORT || 3000;
+
+
+app.listen(port, () => logger.info(`we are listening on ${port}`));
