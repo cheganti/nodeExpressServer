@@ -1,17 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const news = require('./news');
-const validateNews = require('../../validator/validation');
+const error_handler = require('../../../src/interfaces/http/middlewares/error_handler');
 
-router.put('/:id', (req, res) => {
+module.exports = router.put('/:id', (req, res) => {
     const newsData = news.find(c => c.id === parseInt(req.params.id));
     if (!newsData) return res.status(404).send('The news with given Id was not found');
 
-    const { error } = validateNews(req.body); // result error
+    const { error } = error_handler(req.body); // result error
     if (error) return res.status(400).send(error.details[0].message);
 
     newsData.name = req.body.name;
     res.send(newsData);
 });
 
-module.exports = router;
+const news = [
+    { id: 1, name: 'news1' },
+    { id: 2, name: 'news2' },
+    { id: 3, name: 'news3' }
+]
