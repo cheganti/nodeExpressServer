@@ -5,12 +5,23 @@ const routes = require('./src/interfaces/http/router'),
 
 app.use(express.json());
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`we are listening on ${port}`));
+
 
 routes(app);
 
-app.use((err) => {
-    console.log(err);
-    res.status(500);
-});
+  app.use('/',(req, res, next) => {
+    let err = new Error(`Not Found`); 
+    err.status = 404;
+    next(err);
+  });
+
+  app.use((err, req, res, next) =>{
+    res.status(err.status || 500);
+    res.json({
+      message: err.message,
+      error: err.status
+    });
+  });
+
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => console.log(`we are listening on ${port}`));

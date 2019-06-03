@@ -6,13 +6,10 @@ const { Router } = require('express')
 
 module.exports = () => {
   const app = Router()
-
-  
-
   app.route('/').get((req, res) => {
-
     const data = getNews();
     res.send(data);
+
   });
 
   app.route('/').post((req, res) => {
