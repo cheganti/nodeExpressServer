@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const routes = require('./src/interfaces/http/router')
+const logger = require('./src/infra/logging/logger');
 app.use(express.json());
 
 routes(app);
@@ -18,4 +19,4 @@ app.use((err, req, res, next) => {
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`we are listening on ${port}`));
+app.listen(port, () => logger.info(`we are listening on ${port}`));
