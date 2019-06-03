@@ -5,22 +5,14 @@ const routes = require('./src/interfaces/http/router'),
 
 app.use(express.json());
 
-
-
 routes(app);
 
-  app.use('/',(req, res, next) => {
-    let err = new Error(`Not Found`); 
-    err.status = 404;
-    next(err);
+  app.use((req, res, next) =>{
+    res.status(404).send('Incorrect API Endpoint!');
   });
 
-  app.use((err, req, res, next) =>{
-    res.status(err.status || 500);
-    res.json({
-      message: err.message,
-      error: err.status
-    });
+  app.use((err,req, res, next) =>{
+    res.status(500).send('Internal server error occured');
   });
 
   const port = process.env.PORT || 3000;
