@@ -1,16 +1,18 @@
 {
-  "name": "server",
+  "name": "ddd",
   "version": "1.0.0",
   "description": "",
-  "main": "newsServer.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "nodemon server.js"
+    "serve": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "tcomb": "^3.2.29",
+    "winston": "^3.2.1"
   }
 }
