@@ -1,8 +1,7 @@
 const express = require('express');
 const app = express();
 const routes = require('./src/interfaces/http/router'),
-    router = express.Router()
-
+    router = express.Router();
 app.use(express.json());
 
 routes(app);
