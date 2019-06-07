@@ -1,20 +1,9 @@
-const t = require('tcomb')
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const News = t.struct({
-    id: t.maybe(t.String),
-    name: t.String
-    // address: t.String,
-    // contact: t.String,
-    // tin: t.String,
-    // sss: t.String,
-    // philhealth: t.String,
-    // isDeleted: t.Number,
-    // createdBy: t.maybe(t.String),
-    // updatedBy: t.maybe(t.String),
-    // createdAt: t.maybe(t.Date),
-    // updatedAt: t.maybe(t.Date)
-  })
-  
-  module.exports = {
-    News
-  }
+const newsSchema = new Schema({
+  _id: Schema.Types.ObjectId,
+  name: String
+});
+
+module.exports = mongoose.model('News', newsSchema);
