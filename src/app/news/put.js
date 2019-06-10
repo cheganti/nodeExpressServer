@@ -1,6 +1,14 @@
-const news = require('../../domain/news');
-module.exports = (id, body) => {
-    const newsData = news.find(c => c.id === parseInt(id));
-    newsData.name = body.name;
-    return newsData;
+const News = require('../../domain/news/news');
+const mongoose = require('mongoose');
+module.exports = (id, body, res) => {
+    News.update({
+        _id: id,
+    },
+        { $set: { title: body.title } })
+        .then(result => {
+            console.log(result)
+            res.json({
+                message: result
+            });
+        });
 }
