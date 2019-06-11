@@ -1,9 +1,23 @@
 const News = require('../../domain/news/news');
-module.exports = (body) => {
-    return News.find()
-        .then(result => {
-            res.status(200).json({
-                message: result
-            });
-        });
-}
+const newsRep = require('../../infra/repositories/news')
+
+module.exports = (newsRep) => {
+    // code for getting all the items
+    const all = () => {
+      return Promise
+        .resolve()
+        .then(() =>
+        newsRep.getAll({
+            attributes: [
+              'title', 'author'
+            ]
+          })
+        )
+        .catch(error => {
+          throw new Error(error)
+        })
+    }
+    return {
+      all
+    }
+  }

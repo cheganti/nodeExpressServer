@@ -6,7 +6,6 @@ module.exports = (id, body, res) => {
     },
         { $set: { title: body.title } })
         .then(result => {
-            console.log(result)
             res.json({
                 message: result
             });

@@ -9,7 +9,6 @@ module.exports = () => {
   const appRouter = Router()
   appRouter.route('/').get((req, res) => {
     const data = getNews();
-    console.log(data);
     res.send(data);
     logger.info(`Api End Point ${req.originalUrl}`);
   });
