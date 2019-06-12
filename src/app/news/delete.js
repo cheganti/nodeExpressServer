@@ -1,11 +1,4 @@
-const News = require('../../domain/news/news');
-module.exports = (id, res) => {
-    News.deleteOne({
-        _id: id
-    })
-        .then(result => {
-            res.status(200).json({
-                message: result
-            });
-        });
+const newsRep = require('../../infra/repositories/news')
+module.exports = () => {
+    return newsRep().deletenews;
 }

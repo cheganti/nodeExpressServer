@@ -6,28 +6,43 @@ const deleteNews = require('../../../../app/news/delete');
 const logger = require('../../../../infra/logging/logger');
 
 module.exports = () => {
-  const appRouter = Router()
+  const appRouter = Router();
+
   appRouter.route('/').get((req, res) => {
-    const data = getNews();
-    res.send(data);
+    const getUseCase = getNews();
+    getUseCase().then(function (data) {
+      res.json(data)
+    }).catch((err) => {
+      res.json(err)
+    });
     logger.info(`Api End Point ${req.originalUrl}`);
   });
 
   appRouter.route('/').post((req, res) => {
-    const data = postNews(req.body);
-    res.send(data);
-    logger.info(`Api End Point ${req.originalUrl}`);
+    const postUseCase = postNews();
+    postUseCase(req.body).then(function (data) {
+      res.json(data)
+    }).catch((err) => {
+      res.json(err)
+    });
   });
 
   appRouter.route('/:id').put((req, res) => {
-    const data = putNews(req.params.id, req.body, res);
-    res.send(data);
-    logger.info(`Api End Point ${req.originalUrl}`);
+    const putUseCase = putNews();
+    putUseCase(req.body).then(function (data) {
+      res.json(data)
+    }).catch((err) => {
+      res.json(err)
+    });
   });
 
   appRouter.route('/:id').delete((req, res) => {
-    const data = deleteNews(req.params.id, res);
-    res.send(data);
+    const deleteUseCase = deleteNews();
+    deleteUseCase(req.params.id).then(function (data) {
+      res.json(data)
+    }).catch((err) => {
+      res.json(err)
+    });
     logger.info(`Api End Point ${req.originalUrl}`);
   });
   return appRouter;

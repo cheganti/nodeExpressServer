@@ -1,13 +1,4 @@
-const News = require('../../domain/news/news');
-const mongoose = require('mongoose');
+const newsRep = require('../../infra/repositories/news')
 module.exports = (id, body, res) => {
-    News.update({
-        _id: id,
-    },
-        { $set: { title: body.title } })
-        .then(result => {
-            res.json({
-                message: result
-            });
-        });
+    return newsRep().putnews;
 }
