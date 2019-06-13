@@ -1,8 +1,5 @@
-const newsModel = require('../../../domain/news/news');
-const mongoDB = require('../../database');
-
+const newsModel = require('../../../infra/database/model/news');
 module.exports = () => {
-  mongoDB();
   const getall = () => {
     return new Promise((resolve, reject) => {
       newsModel.find({}).then(data => {
@@ -30,7 +27,7 @@ module.exports = () => {
   const putnews = (request) => {
     console.log(request)
     return new Promise((resolve, reject) => {
-      newsModel.updateOne({ _id: request.id, }, { $set: { title: request.title} }).then(result => {
+      newsModel.updateOne({ _id: request.id, }, { $set: { title: request.title } }).then(result => {
         if (request.nModified == 0) {
           reject("record is not been updated");
         } else {

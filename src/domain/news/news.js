@@ -1,7 +1,10 @@
-const mongoose = require('mongoose');
+const t = require('tcomb')
+
 const News = {
-  author: String,
-  title: String
-}
-const newsModel = mongoose.model('News', News);
-module.exports = newsModel;
+    title: String,
+    author: String
+  }
+  
+  module.exports = {
+    News
+  }
