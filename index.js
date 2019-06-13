@@ -16,4 +16,4 @@ app.use((err, req, res, next) => {
     });
 });
 const port = process.env.PORT || 3000;
-mongoDB(app.listen(port, () => logger.info(`we are listening on ${port}`)));
+mongoDB().dbConnection().then(app.listen(port, () => logger.info(`we are listening on ${port}`)));

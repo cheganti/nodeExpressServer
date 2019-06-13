@@ -1,4 +1,4 @@
 const newsRep = require('../../infra/repositories/news')
-module.exports = (id, body, res) => {
-    return newsRep().putnews;
+module.exports = (req) => {
+    return newsRep().putnews(req);
 }

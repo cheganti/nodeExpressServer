@@ -18,8 +18,7 @@ module.exports = () => {
   });
 
   appRouter.route('/').post((req, res) => {
-    const postUseCase = postNews();
-    postUseCase(req.body).then(function (data) {
+    postNews(req.body).then(function (data) {
       res.json(data)
     }).catch((err) => {
       res.json(err)
@@ -27,8 +26,7 @@ module.exports = () => {
   });
 
   appRouter.route('/:id').put((req, res) => {
-    const putUseCase = putNews();
-    putUseCase(req.body).then(function (data) {
+    putNews(req.body).then(function (data) {
       res.json(data)
     }).catch((err) => {
       res.json(err)

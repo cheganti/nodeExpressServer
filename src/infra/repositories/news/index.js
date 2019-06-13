@@ -12,9 +12,9 @@ module.exports = () => {
     });
   }
 
-  const postnews = (request) => {
+  const postnews = (news) => {
     return new Promise((resolve, reject) => {
-      newsModel.create(request).then(result => {
+      newsModel.create(news).then(result => {
         if (result._id) {
           resolve(result);
         } else {
@@ -24,11 +24,10 @@ module.exports = () => {
     });
   }
 
-  const putnews = (request) => {
-    console.log(request)
+  const putnews = (news) => {
     return new Promise((resolve, reject) => {
-      newsModel.updateOne({ _id: request.id, }, { $set: { title: request.title } }).then(result => {
-        if (request.nModified == 0) {
+      newsModel.updateOne({ _id: news.id, }, { $set: { title: news.title } }).then(result => {
+        if (news.nModified == 0) {
           reject("record is not been updated");
         } else {
           resolve(result);
