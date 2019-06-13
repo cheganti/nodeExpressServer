@@ -1,14 +1,12 @@
-const News = require('../../../domain/news/news');
+const newsModel = require('../../../domain/news/news');
 const mongoDB = require('../../database');
-const mongoose = require('mongoose');
-var newsModel = mongoose.model('News', News);
 
 module.exports = () => {
   mongoDB();
   const getall = () => {
     return new Promise((resolve, reject) => {
       newsModel.find({}).then(data => {
-        if (data && data.length >0) {
+        if (data && data.length > 0) {
           resolve(data);
         } else {
           reject("err")
@@ -30,8 +28,9 @@ module.exports = () => {
   }
 
   const putnews = (request) => {
+    console.log(request)
     return new Promise((resolve, reject) => {
-      newsModel.updateOne({ _id: request.id, }, { $set: { title: request.title, author: request.author } }).then(result => {
+      newsModel.updateOne({ _id: request.id, }, { $set: { title: request.title} }).then(result => {
         if (request.nModified == 0) {
           reject("record is not been updated");
         } else {
@@ -52,7 +51,6 @@ module.exports = () => {
       });
     });
   }
-
   return {
     getall,
     postnews,
@@ -60,5 +58,3 @@ module.exports = () => {
     deletenews
   }
 }
-
-

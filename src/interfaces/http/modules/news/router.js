@@ -1,4 +1,4 @@
-const { Router } = require('express')
+const { Router } = require('express');
 const getNews = require('../../../../app/news/get');
 const postNews = require('../../../../app/news/post');
 const putNews = require('../../../../app/news/put');
@@ -9,8 +9,7 @@ module.exports = () => {
   const appRouter = Router();
 
   appRouter.route('/').get((req, res) => {
-    const getUseCase = getNews();
-    getUseCase().then(function (data) {
+    getNews().then(function (data) {
       res.json(data)
     }).catch((err) => {
       res.json(err)
@@ -37,8 +36,7 @@ module.exports = () => {
   });
 
   appRouter.route('/:id').delete((req, res) => {
-    const deleteUseCase = deleteNews();
-    deleteUseCase(req.params.id).then(function (data) {
+    deleteNews(req.params.id).then(function (data) {
       res.json(data)
     }).catch((err) => {
       res.json(err)

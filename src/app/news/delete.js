@@ -1,4 +1,4 @@
 const newsRep = require('../../infra/repositories/news')
-module.exports = () => {
-    return newsRep().deletenews;
+module.exports = (id) => {
+    return newsRep().deletenews(id);
 }

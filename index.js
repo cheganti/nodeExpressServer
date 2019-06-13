@@ -20,10 +20,3 @@ app.use((err, req, res, next) => {
 });
 const port = process.env.PORT || 3000;
 app.listen(port, () => logger.info(`we are listening on ${port}`));
-
-mongoose.connect('mongodb://localhost:27017/newsCollection', { useNewUrlParser: true });
-const db = mongoose.connection
-db.on('error', console.error.bind(console, 'connection error:'))
-db.once('open', function () {
-    console.log('Connected to MongoDB')
-})
