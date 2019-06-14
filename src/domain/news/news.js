@@ -1,8 +1,8 @@
 const t = require('tcomb')
-const News = {
-  title: String,
-  author: String
-}
+const News = t.struct({
+  title: t.String,
+  author: t.String
+})
 module.exports = {
   News
 }

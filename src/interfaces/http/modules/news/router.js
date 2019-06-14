@@ -9,7 +9,7 @@ module.exports = () => {
   const appRouter = Router();
 
   appRouter.route('/').get((req, res) => {
-    getNews().then(function (data) {
+    getNews().then((data) => {
       res.json(data)
     }).catch((err) => {
       res.json(err)
@@ -18,7 +18,7 @@ module.exports = () => {
   });
 
   appRouter.route('/').post((req, res) => {
-    postNews(req.body).then(function (data) {
+    postNews(req.body).then((data) => {
       res.json(data)
     }).catch((err) => {
       res.json(err)
@@ -26,7 +26,7 @@ module.exports = () => {
   });
 
   appRouter.route('/:id').put((req, res) => {
-    putNews(req.body).then(function (data) {
+    putNews(req.body).then((data) => {
       res.json(data)
     }).catch((err) => {
       res.json(err)
@@ -34,7 +34,7 @@ module.exports = () => {
   });
 
   appRouter.route('/:id').delete((req, res) => {
-    deleteNews(req.params.id).then(function (data) {
+    deleteNews(req.params.id).then((data) => {
       res.json(data)
     }).catch((err) => {
       res.json(err)
