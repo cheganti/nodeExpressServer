@@ -1,4 +1,4 @@
-const news = require('../data/news');
-module.exports = ()=> {
-    return news;
+const newsRep = require('../../infra/repositories/news');
+module.exports = () => {
+    return newsRep().getall();
 }

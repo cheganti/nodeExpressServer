@@ -1,9 +1,4 @@
-const news = require('../data/news');
-module.exports = (body) => {
-    const newsData = {
-        id: news.length + 1,
-        name: body.name
-    }
-    news.push(newsData);
-    return "Post Successfull"
+const newsRep = require('../../infra/repositories/news')
+module.exports = (news) => {
+    return newsRep().postnews(news);
 }
