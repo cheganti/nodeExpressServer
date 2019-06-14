@@ -18,7 +18,6 @@ app.use((err, req, res, next) => {
 const port = process.env.PORT || 3000;
 mongoConnect().then(
     (data) => {
-        console.log(data);
         app.listen(port, () => logger.info(`we are listening on ${port}`))
     }).catch((err) => {
         console.log(err);
